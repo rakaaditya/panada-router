@@ -1,7 +1,23 @@
 Panada Router
 =======================
 
-A simple library to route Panada Framework 1.*.
+A simple library to route [Panada Framework](http://panadaframework.com/) 1.*
+
+## Installing PanadaRouter
+
+The recommended way to install Guzzle is through
+[Composer](http://getcomposer.org).
+
+```bash
+# Install Composer
+curl -sS https://getcomposer.org/installer | php
+```
+
+Next, run the Composer command to install the latest version of PanadaRouter:
+
+```bash
+composer.phar require rakaaditya/panada-router
+```
 
 #### First, create AliasController.php in Controllers folder:
 
@@ -59,5 +75,3 @@ class AliasController
     ],
  ],
 ```
-
-Sorry for bad design pattern. :(
