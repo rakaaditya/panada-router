@@ -1,11 +1,10 @@
-Panada Router
-=======================
+# PanadaRouter
 
 A simple library to route [Panada Framework](http://panadaframework.com/) 1.*
 
-## Installing PanadaRouter
+## Installation
 
-The recommended way to install Guzzle is through
+The recommended way to install PanadaRouter is through
 [Composer](http://getcomposer.org).
 
 ```bash
@@ -18,20 +17,13 @@ Next, run the Composer command to install the latest version of PanadaRouter:
 ```bash
 composer.phar require rakaaditya/panada-router
 ```
+## Configuration
 
 #### First, create AliasController.php in Controllers folder:
 
 ```php
 namespace Controllers;
 use Rakaaditya\PanadaRouter\Routes as Route;
-
-/**
- * This class is for routing alias 
- *
- * @package MyApp
- * @author raka aditya <raka@detik.com>
- * @since version 1.0 <March 2015> 
- */
 
 class AliasController
 {
@@ -53,11 +45,11 @@ class AliasController
 
         // PUT sample
         // http://localhost:8000/post/edit/
-        $route->post('post/edit', 'PostController@update')
+        $route->put('post/edit', 'PostController@update')
 
         // DELETE sample
         // http://localhost:8000/post/delete/2/
-        $route->post('post/delete/{id}', 'PostController@delete')
+        $route->delete('post/delete/{id}', 'PostController@delete')
         
         // Let's run through the route!!
         $route->run();
@@ -75,3 +67,5 @@ class AliasController
     ],
  ],
 ```
+## License
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
