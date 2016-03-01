@@ -4,8 +4,8 @@ namespace Rakaaditya\PanadaRouter;
 /**
  * This class is for routing alias 
  *
- * @package Router
- * @author raka aditya <raka@detik.com>
+ * @package PanadaRouter
+ * @author raka aditya <hai@rakaaditya.com>
  * @since version 1.0 <March 2016> 
  */
 
