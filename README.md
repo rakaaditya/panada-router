@@ -7,7 +7,7 @@ A simple library to route Panada Framework 1.*.
 
 ```php
 namespace Controllers;
-use Libraries\Router\Routes as Route;
+use Rakaaditya\PanadaRouter\Routes as Route;
 
 /**
  * This class is for routing alias 
