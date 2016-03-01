@@ -46,6 +46,11 @@ class Routes
         $this->mapping($uri, $action, 'DELETE');
     }
 
+    public function routeAction($prop)
+    {
+        return self::$routeAction[$prop];
+    }
+
     public function mapping($uri, $action, $requestMethod)
     {
         $options    = [];
@@ -53,7 +58,7 @@ class Routes
         $controller = $action[0];
         $method     = $action[1];
 
-        preg_match_all('/\{([^\)]*)\}/', $uri, $params);
+        preg_match_all('/\{([^\s\/]+)}/', $uri, $params);
         if (count($params) && count($params[0])) {
             $matcher = $uri;
             foreach ($params [0] as $param) {
@@ -63,13 +68,13 @@ class Routes
             $options['params'] = $params[1];
 
             self::$url['pattern'][$requestMethod][$uri] = [
-                'class'     => '\\Controllers\\'.$controller,
+                'controller'=> '\\Controllers\\'.$controller,
                 'method'    => $method,
                 'options'   => $options
             ];
         } else {
             self::$url['static'][$requestMethod][$uri] = [
-                'class'     => '\\Controllers\\'.$controller,
+                'controller'=> '\\Controllers\\'.$controller,
                 'method'    => $method,
                 'args'      => [],
             ];
@@ -93,7 +98,7 @@ class Routes
     public function run()
     {
         $parsed     = $this->parse($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
-        if($controller = $parsed['class']) {
+        if($controller = $parsed['controller']) {
             try {
                 $instance = new $controller;
                 return call_user_func_array(array($instance, $parsed['method']), array_values($parsed['args']));
