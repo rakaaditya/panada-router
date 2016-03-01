@@ -1,0 +1,13 @@
+{
+    "name": "rakaaditya/panada-router",
+    "description": "A simple library to route Panada 1.*",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "raka aditya",
+            "email": "hai@rakaaditya.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
