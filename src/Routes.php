@@ -57,7 +57,8 @@ class Routes
         $action     = explode('@', $action);
         $controller = $action[0];
         $method     = $action[1];
-
+        $uri        = trim($uri, '/');
+        
         preg_match_all('/\{([^\s\/]+)}/', $uri, $params);
         if (count($params) && count($params[0])) {
             $matcher = $uri;
