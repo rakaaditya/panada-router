@@ -3,6 +3,14 @@
 
 A simple library to route [Panada Framework](http://panadaframework.com/) 1.*
 
+```php
+$route->get('/home', 'HomeController@index');
+$route->get('{username}/{id}/{slug}', 'ArticleController@detail');
+$route->post('post/create', 'ArticleController@store');
+
+$route->run();
+```
+
 ## Installation
 
 The recommended way to install PanadaRouter is through
@@ -38,19 +46,19 @@ class AliasController
 
         // GET using parameters sample
         // http://localhost:8000/raka/10/post-title/
-        $route->get('{username}/{id}/{slug}', 'PostController@detail');
+        $route->get('{username}/{id}/{slug}', 'ArticleController@detail');
 
         // POST sample
         // http://localhost:8000/post/create/
-        $route->post('post/create', 'PostController@store')
+        $route->post('post/create', 'ArticleController@store')
 
         // PUT sample
         // http://localhost:8000/post/edit/
-        $route->put('post/edit', 'PostController@update')
+        $route->put('post/edit', 'ArticleController@update')
 
         // DELETE sample
         // http://localhost:8000/post/delete/2/
-        $route->delete('post/delete/{id}', 'PostController@delete')
+        $route->delete('post/delete/{id}', 'ArticleController@delete')
         
         // Let's run through the route!!
         $route->run();
@@ -68,5 +76,3 @@ class AliasController
     ],
  ],
 ```
-## License
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
