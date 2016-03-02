@@ -1,4 +1,5 @@
 # PanadaRouter
+[![Build Status](https://travis-ci.org/rakaaditya/panada-router.svg?branch=master)](https://travis-ci.org/rakaaditya/panada-router)
 
 A simple library to route [Panada Framework](http://panadaframework.com/) 1.*
 
