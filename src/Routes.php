@@ -98,7 +98,7 @@ class Routes
 
     public function run()
     {
-        $parsed     = $this->parse($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
+        $parsed     = $this->parse(strtok($_SERVER["REQUEST_URI"],'?'), $_SERVER['REQUEST_METHOD']);
         if($controller = $parsed['controller']) {
             try {
                 $instance = new $controller;
