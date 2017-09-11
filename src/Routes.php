@@ -62,7 +62,7 @@ class Routes
         $uri        = trim($uri, '/');
 
         if($prefix = $this->prefix)
-            $uri = $prefix . '/' . $uri;
+            $uri = trim($prefix . '/' . $uri, '/');
 
         preg_match_all('/\{([^\s\/]+)}/', $uri, $params);
         if (count($params) && count($params[0])) {
