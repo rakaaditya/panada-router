@@ -46,6 +46,11 @@ class Routes
         $this->mapping($uri, $action, 'DELETE');
     }
 
+    public function group($params, $action)
+    {
+    	
+    }
+
     public function routeAction($prop)
     {
         return self::$routeAction[$prop];
