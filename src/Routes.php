@@ -11,6 +11,8 @@ namespace Rakaaditya\PanadaRouter;
 
 class Routes
 {
+    public $prefix = null;
+
     static $url = [
                 'static' => [
                     'GET'       => [],
@@ -26,44 +28,42 @@ class Routes
                 ]
             ];
 
-    public function get($uri, $action)
-    {
+    public function get($uri, $action) {
         $this->mapping($uri, $action, 'GET');
     }
 
-    public function post($uri, $action)
-    {
+    public function post($uri, $action) {
         $this->mapping($uri, $action, 'POST');
     }
 
-    public function put($uri, $action)
-    {
+    public function put($uri, $action) {
         $this->mapping($uri, $action, 'PUT');
     }
 
-    public function delete($uri, $action)
-    {
+    public function delete($uri, $action) {
         $this->mapping($uri, $action, 'DELETE');
     }
 
-    public function group($params, $action)
-    {
-    	
+    public function group($prefix, $actions) {
+        $this->prefix = $prefix;
+        $actions($this);
+        $this->prefix = null;
     }
 
-    public function routeAction($prop)
-    {
+    public function routeAction($prop) {
         return self::$routeAction[$prop];
     }
 
-    public function mapping($uri, $action, $requestMethod)
-    {
+    public function mapping($uri, $action, $requestMethod) {
         $options    = [];
         $action     = explode('@', $action);
         $controller = $action[0];
         $method     = $action[1];
         $uri        = trim($uri, '/');
-        
+
+        if($prefix = $this->prefix)
+            $uri = trim($prefix . '/' . $uri, '/');
+
         preg_match_all('/\{([^\s\/]+)}/', $uri, $params);
         if (count($params) && count($params[0])) {
             $matcher = $uri;
@@ -101,8 +101,7 @@ class Routes
         }
     }
 
-    public function run()
-    {
+    public function run() {
         $parsed     = $this->parse(strtok($_SERVER["REQUEST_URI"],'?'), $_SERVER['REQUEST_METHOD']);
         if($controller = $parsed['controller']) {
             try {

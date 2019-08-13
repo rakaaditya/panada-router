@@ -28,7 +28,17 @@ composer.phar require rakaaditya/panada-router
 ```
 ## Configuration
 
-#### First, create AliasController.php in Controllers folder:
+### First, add the following configuration at app/config/main.php file:
+```php
+'alias' => [
+    'controller' => [
+        'class' => 'AliasController',
+        'method' => 'index'
+    ],
+ ],
+```
+
+### Then, create AliasController.php in Controllers folder:
 
 ```php
 namespace Controllers;
@@ -39,40 +49,33 @@ class AliasController
     public function index()
     {
         $route = new Route;
-        
-        // GET sample
-        // http://localhost:8000/home/
         $route->get('coba', 'HomeController@index');
-
-        // GET using parameters sample
-        // http://localhost:8000/raka/10/post-title/
         $route->get('{username}/{id}/{slug}', 'ArticleController@detail');
 
-        // POST sample
-        // http://localhost:8000/post/create/
-        $route->post('post/create', 'ArticleController@store')
-
-        // PUT sample
-        // http://localhost:8000/post/edit/
-        $route->put('post/edit', 'ArticleController@update')
-
-        // DELETE sample
-        // http://localhost:8000/post/delete/2/
-        $route->delete('post/delete/{id}', 'ArticleController@delete')
-        
         // Let's run through the route!!
         $route->run();
     }
 }
 
 ```
-
-#### Then add the following configuration in main config:
+### Basic Usage
 ```php
-'alias' => [
-    'controller' => [
-        'class' => 'AliasController',
-        'method' => 'index'
-    ],
- ],
+// GET
+$route->get('posts', 'PostController@posts');
+// POST
+$route->post('posts/create', 'PostController@create');
+// PUT
+$route->put('posts/{id}/update', 'PostController@update');
+// DELETE
+$route->delete('posts/{id}/delete', 'PostController@delete');
+```
+
+### Grouping with prefix
+```php
+$route->group('posts', function($route) {
+    $route->get('/', 'PostController@posts');
+    $route->post('create', 'PostController@create');
+    $route->put('{id}/update', 'PostController@update');
+    $route->delete('{id}/delete', 'PostController@delete');
+});
 ```
